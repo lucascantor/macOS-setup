@@ -1,6 +1,7 @@
 # macOS Setup
 
-`./setup.sh` performs the following
+1. Copy private SSH and GPG keys to `ssh-keys` and `gpg-keys`
+2. Run `./setup.sh` to perform the following:
 
 - Clear NVRAM
 - Configure saving defaults
