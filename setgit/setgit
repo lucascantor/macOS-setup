@@ -1,0 +1,34 @@
+#!/usr/bin/python
+# --------------- #
+# setgit.py
+#
+# Script to manage multiple global gitconfigs
+#
+#
+# To load .gitconfig-this to .gitconfig it run:
+# setgit this
+#
+#
+# --------------- #
+__author__ = 'Jeffrey Stone <thejeffreystone@gmail.com>'
+
+# modules
+import sys, os, shutil, argparse
+
+# Main Program
+def main():
+	# Create Parser that will read command line input
+	parser = argparse.ArgumentParser(description="create .gitconfig from a source file .gitconfig-source")
+	parser.add_argument('source',
+                    help='the source identifier')
+	args = parser.parse_args()
+
+	if args.source:
+		if os.path.isfile(os.environ['HOME'] + '/.gitconfig-' + args.source ):
+			shutil.copyfile(os.environ['HOME'] + '/.gitconfig-' + args.source, os.environ['HOME'] + '/.gitconfig' )
+		else:
+			print "I could not find a source file " + os.environ['HOME'] + "/.gitconfig-" + args.source
+
+# Ok, so we're doing this...
+if __name__ == '__main__':
+	main()
