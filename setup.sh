@@ -108,6 +108,7 @@ brew cask install \
   google-backup-and-sync \
   imageoptim \
   keybase \
+  transmit \
   spectacle \
   sublime-text \
   suspicious-package \
