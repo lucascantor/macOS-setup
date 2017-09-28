@@ -83,11 +83,9 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 
 # Install and update Homebrew
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew \ 
-  update \
-  upgrade \
-  cleanup \
-;
+brew update
+brew upgrade
+brew cleanup
 
 # Install software via Homebrew
 brew install \
