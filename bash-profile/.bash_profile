@@ -1,16 +1,32 @@
+# --------------------------------------------------------------------------------------------------------
+#
+# Lucas Cantor - bash configuration
+#
+# See current version at https://github.com/lucascantor/macOS-setup/blob/master/bash-profile/.bash_profile
+#
+# --------------------------------------------------------------------------------------------------------
+
+# SSH keys
 # load ssh keys from keychain into agent
 ssh-add -A 2>/dev/null;
 
-# GAM
-alias gam="/Users/lucas/bin/gam/gam"
+# Virtualenv Wrapper
+export WORKON_HOME=$HOME/.virtualenvs
+source $HOME/Library/Python/2.7/bin/virtualenvwrapper.sh
+export PATH="$PATH:$HOME/Library/Python/2.7/bin"
 
-# open file in Sublime Text
-# requires brew cask install sublime-text
+# GAM
+# command line G Suite admin tool
+# usage: https://github.com/jay0lee/GAM/wiki
+alias gam="~/bin/gam/gam"
+
+# Sublime Text
+# open any file in Sublime Text
 # usage: slt filename
 alias slt='open -a "Sublime Text"'
 
 # ImageOptim
-# requires brew cask install imageoptim
+# optimize image file in imageoptim
 # usage: ImageOptim *.png
 alias ImageOptim='/Applications/ImageOptim.app/Contents/MacOS/ImageOptim'
 
@@ -19,10 +35,10 @@ alias ImageOptim='/Applications/ImageOptim.app/Contents/MacOS/ImageOptim'
 alias ale='/usr/local/bin/brew update && /usr/local/bin/brew upgrade && /usr/local/bin/brew cleanup'
 
 # Reset Launchpad
+# order apps alphabetically in Launchpad
 alias reset-launchpad='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'
 
 # ffmpeg batch conversion of files in working directory
-# requires brew install ffmpeg
 # $1: original file format
 # $2: output file format
 # usage: batchconvert m4a mp3
@@ -31,15 +47,9 @@ function batchconvert() {
 }
 
 # createinstallmedia
-# requires downloaded "Install macOS" app downloaded from Mac App Store and intallation media
-# $1: path to "Install OS X" app downloaded from Mac App Store
+# $1: path to "Install macOS" app downloaded from Mac App Store
 # $2: path to installation media volume
-# usage: createinstallmedia /Applications/Install\ OS\ X\ El\ Capitan.app /Volumes/Untitled/
+# usage: createinstallmedia /Applications/Install\ macOS\ High\ Sierra.app /Volumes/Untitled/
 function createinstallmedia() {
 	sudo "$1"/Contents/Resources/createinstallmedia --volume "$2" --applicationpath "$1" --nointeraction
 }
-
-# Virtualenv Wrapper
-export WORKON_HOME=$HOME/.virtualenvs
-source $HOME/Library/Python/2.7/bin/virtualenvwrapper.sh
-export PATH="$PATH:$HOME/Library/Python/2.7/bin"
