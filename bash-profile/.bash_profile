@@ -185,6 +185,6 @@ alias mv='mv -iv'                           # mv:           Preferred 'mv' imple
 alias mkdir='mkdir -pv'                     # mkdir:        Preferred 'mkdir' implementation
 alias ls='ls -FGlAhp'                       # ls:           Preferred 'ls' implementation
 alias less='less -FSRXc'                    # less:         Preferred 'less' implementation
-alias f='open -a Finder ./'                 # f:            Opens present working directory in Finder
+alias finder='open -a Finder ./'            # finder:       Opens present working directory in Finder
 alias slt='open -a "Sublime Text"'          # slt:          Opens any file in Sublime Text
 cd() { builtin cd "$@"; ls; }               # cd:           Lists directory contents upon 'cd'
