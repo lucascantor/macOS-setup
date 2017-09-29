@@ -64,7 +64,7 @@ mkzip() {
 # extract
 # extract most know archives with one command
 # usage: extract archive-name-here.xxx
-extract () {
+extract() {
 	if [ -f $1 ] ; then
 		case $1 in
             *.tar.bz2)   tar xjf $1     ;;
@@ -90,7 +90,7 @@ extract () {
 # cdfinder
 # cd to frontmost window currently open in Finder
 # usage: cdfinder
-cdfinder () {
+cdfinder() {
 	currFolderPath=$( /usr/bin/osascript <<EOT
 		tell application "Finder"
 			try
