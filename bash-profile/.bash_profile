@@ -155,6 +155,15 @@ reset-launchpad() {
 
 # -----------------------------------------------------
 
+# clean-ds
+# recursively delete .DS_Store files
+# usage: clean-ds
+clean-ds() {
+	find . -type f -name '*.DS_Store' -ls -delete
+}
+
+# -----------------------------------------------------
+
 # batch-convert
 # batch conversion of files in working directory
 # $1: original file format extension (e.g., xxx)
