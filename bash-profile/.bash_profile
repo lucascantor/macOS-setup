@@ -185,6 +185,24 @@ create-install-media() {
 	sudo "$1"/Contents/Resources/createinstallmedia --volume "$2" --applicationpath "$1" --nointeraction
 }
 
+# -----------------------------------------------------
+
+# ip
+# show public and private IP addresses
+# usage: ip
+ip() {
+	echo -en "\nPublic:\n• WAN: "
+	dig +short myip.opendns.com @resolver1.opendns.com
+	echo -en "Private:"
+	for interface in $(networksetup -listnetworkserviceorder | grep -E 'en[0-99]' | awk '/en[0-99]/ { print $NF }' | awk -F ")" '{ print $1 }'); do
+		ip=$(ipconfig getifaddr "$interface")
+		if [[ -n "$ip" ]]; then
+			echo -en "\n• $interface: $ip"
+		fi
+	done
+	printf "\n\n"
+}
+
 # ----------------------------------------------------------------------------------
 #  Customize usage for common tools
 # -----------------------------------------------------
