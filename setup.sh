@@ -101,15 +101,17 @@ brew install \
 brew cask install \
   1password \
   backblaze \
+  blockblock \
   gpgtools \
   google-chrome \
   google-backup-and-sync \
   imageoptim \
   keybase \
-  transmit \
+  oversight \
   spectacle \
   sublime-text \
   suspicious-package \
+  transmit \
   virtualbox \
   vlc \
 ;
