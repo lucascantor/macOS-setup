@@ -1,7 +1,7 @@
 [user]
 	name = Lucas Cantor
-	email = lucas@intercom.io
-	signingkey = 0428BA33FADD5878
+	email = lucascantor@gmail.com
+	signingkey = 4A680EC688ADA941
 [push]
 	default = simple
 [commit]
