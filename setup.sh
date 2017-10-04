@@ -91,10 +91,11 @@ brew cleanup
 brew install \
   ffmpeg \
   git \
+  mas \
   speedtest_cli \
+  tree \
   wget \
   youtube-dl \
-  mas \
 ;
 
 # Install software via Homebrew-Cask
