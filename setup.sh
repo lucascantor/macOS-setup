@@ -179,7 +179,7 @@ ssh-add -K ~/.ssh/*
 # Restore ssh config
 cp ssh-config/config ~/.ssh/config
 
-# Authorize public key
+# Restore sshd_config
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuZw8/bNgVcECchitUO1fNARNdCcfhPmL72CIVX46xjZH3zPJDWloZ45SxqN7ExktNETDaY35QHauAlZScSCrW7MwFouo4qrPTjpHzPcLj0Pz9FoTiFDqKujj8Lf7Bs+GLbSyJW34+/rUN8XAX7VVv+nutZqTIfrqLlfGk92hmz9B5+TVrOjPV+hdfVxkrmfkfANvfb9IjaIEaA9iOqFugEMEGzAU+lrmsEssSrA07qv7YKPNyab0DqMOJBIUI4TXe4B0xcBRAGr/zs6x9s4jd94+GjkEihqwZEjtSoFOXvaiQaRxu8O7Cjaq+sAfwNp/PLhm7rO65NTEMbuSrKVkABkBzltbleSgNR3bAU5XSix6/ckMasO2S1rvaiT6EWKKZFMWwLLutqcgqvaeKe9+8bdYaKCcrM+5qKyL1ULHAJKW6PyK5JeHHMzVeFvYbTcOX6j1AtnvGIVN7gwrWJMzhj+OLGFa70JW0TkHik0bO7t7OeJc3Vj4ZqZaQKHQQ6hOo6D5vO57NA+nqGautjFBI8dsAXo0khGzMoBlj2b8Ufn1saG6AlaB1RYLdMIr6a0daY9vfzsmH4dTBcwT7jY5boqvhZSeiOSM40vBIKOO0QRCPaVF6m9lcgKgWAxhnruSiifJTlVHCHMV/om5Un9oKdaV6zXBdXpLwtq7ZAATbwQ== lucascantor@gmail.com" >> ~/.ssh/authorized_keys
 
 # Prohibit password auth
