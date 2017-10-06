@@ -4,15 +4,17 @@
 # Confirm private keys in place to restore                                    #
 ###############################################################################
 
-# Exit if gpg-keys directory is empty
-if [ -f gpg-keys/REPLACE-ME-WITH-PRIVATE-GPG-KEYS ]
+# Exit if private gpg keys are missing
+gpgKeyCount=`grep -l "RSA PRIVATE KEY" gpg-keys/* | wc -l`
+if [ $gpgKeyCount == 0 ]
 then
   echo "Error: please place private GPG key(s) in gpg-keys directory"
   exit 1
 fi
 
-# Exit if ssh-keys directory is empty
-if [ -f ssh-keys/REPLACE-ME-WITH-PRIVATE-SSH-KEYS ]
+# Exit if private ssh keys are missing
+sshKeyCount=`grep -l "RSA PRIVATE KEY" ssh-keys/* | wc -l`
+if [ $sshKeyCount == 0 ]
 then
   echo "Error: please place private SSH key(s) in ssh-keys directory"
   exit 1
