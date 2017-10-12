@@ -46,23 +46,6 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
 ###############################################################################
-# Dock                                                                        #
-###############################################################################
-
-# Enable Dock auto-hidng
-defaults write com.apple.dock autohide -bool true
-
-# Disable Dock animation delays
-defaults write com.apple.dock autohide-delay -float 0
-defaults write com.apple.dock autohide-time-modifier -float 0
-
-# Place Dock on right side of screen
-defaults write com.apple.dock orientation right
-
-# Remove icons from Dock
-defaults write com.apple.dock persistent-apps -array
-
-###############################################################################
 # Security                                                                    #
 ###############################################################################
 
@@ -91,6 +74,7 @@ brew cleanup
 
 # Install software via Homebrew
 brew install \
+  dockutil \
   ffmpeg \
   git \
   mas \
@@ -107,7 +91,7 @@ brew cask install \
   blockblock \
   gpgtools \
   google-chrome \
-  google-backup-and-sync \
+  google-drive-file-stream \
   imageoptim \
   keybase \
   oversight \
@@ -133,6 +117,33 @@ mas install \
   904280696 `#things 3` \
   1091189122 `#bear` \
 ;
+
+###############################################################################
+# Dock                                                                        #
+###############################################################################
+
+# Enable Dock auto-hidng
+defaults write com.apple.dock autohide -bool true
+
+# Disable Dock animation delays
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0
+
+# Place Dock on right side of screen
+defaults write com.apple.dock orientation right
+
+# Remove icons from Dock
+dockutil --remove all --no-restart
+
+# Add icons to Dock
+dockutil --add /Applications/Google\ Chrome.app --no-restart
+dockutil --add /Applications/Safari.app --no-restart
+dockutil --add /Applications/Messages.app --no-restart
+dockutil --add /Applications/Things.app --no-restart
+dockutil --add /Applications/Bear.app --no-restart
+dockutil --add /Applications/Utilities\ Terminal.app --no-restart
+dockutil --add /Applications/Sublime\ Text.app
+
 
 ###############################################################################
 # Git                                                                         #
