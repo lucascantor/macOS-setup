@@ -28,41 +28,6 @@ fi
 sudo /usr/sbin/nvram -c
 
 ###############################################################################
-# Saving and printing                                                         #
-###############################################################################
-
-# Expand save panel by default
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-
-# Expand print panel by default
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
-
-# Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
-
-# Automatically quit printer app once the print jobs complete
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-###############################################################################
-# Security                                                                    #
-###############################################################################
-
-# Enable automatic Apple security updates
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool yes
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool yes
-sudo softwareupdate --schedule on
-sudo softwareupdate --background-critical
-
-# Require password immediately after sleep or screen saver begins
-sudo defaults write com.apple.screensaver askForPassword -int 1
-sudo defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-# Set login window text
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Lucas Cantor - 610.202.9708"
-
-###############################################################################
 # Software Installations                                                      #
 ###############################################################################
 
@@ -119,6 +84,41 @@ mas install \
 ;
 
 ###############################################################################
+# Saving and printing                                                         #
+###############################################################################
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+###############################################################################
+# Security                                                                    #
+###############################################################################
+
+# Enable automatic Apple security updates
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool yes
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool yes
+sudo softwareupdate --schedule on
+sudo softwareupdate --background-critical
+
+# Require password immediately after sleep or screen saver begins
+sudo defaults write com.apple.screensaver askForPassword -int 1
+sudo defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+# Set login window text
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Lucas Cantor - 610.202.9708"
+
+###############################################################################
 # Dock                                                                        #
 ###############################################################################
 
@@ -145,6 +145,15 @@ dockutil --add /Applications/Bear.app --no-restart
 dockutil --add /Applications/Utilities/Terminal.app --no-restart
 dockutil --add /Applications/Sublime\ Text.app
 
+###############################################################################
+# Screenshots                                                                 #
+###############################################################################
+
+# Save screenshots to ~/Documents/Screenshots which is synced by iCloud Drive
+defaults write com.apple.screencapture location ~/Documents/Screenshots/
+
+# Disable capturing window shadows in screenshots
+defaults write com.apple.screencapture disable-shadow -bool true
 
 ###############################################################################
 # Git                                                                         #
