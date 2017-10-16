@@ -31,6 +31,9 @@ Host deployment-chi
 	HostName 10.200.0.27
 	User deploymentuser
 	IdentityFile ~/.ssh/lucas_intercom_rsa
-Host *github.com
+Host github.com
  	User git
  	IdentityFile ~/.ssh/personal_01_17_2016_rsa
+Host *
+	User intercom
+	IdentityFile ~/.ssh/lucas_intercom_rsa
