@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Close System Preferences if open, to avoid conflicts
+osascript -e 'tell application "System Preferences" to quit'
+
 ###############################################################################
 # Confirm private keys in place to restore                                    #
 ###############################################################################
@@ -84,32 +87,77 @@ mas install \
 ;
 
 ###############################################################################
-# Saving and printing                                                         #
+# General UI/UX                                                               #
 ###############################################################################
 
 # Expand save panel by default
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+sudo defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+sudo defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
 # Expand print panel by default
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+sudo defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+sudo defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 # Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+sudo defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Automatically quit printer app once the print jobs complete
-defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+sudo defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
+# Restart automatically if the computer freezes
+sudo systemsetup -setrestartfreeze on
+
+# Disable automatic capitalization as it’s annoying when typing code
+sudo defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Disable smart dashes as they’re annoying when typing code
+sudo defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable automatic period substitution as it’s annoying when typing code
+sudo defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable smart quotes as they’re annoying when typing code
+sudo defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Enable full keyboard access for all controls
+sudo defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Use scroll gesture with the Ctrl (^) modifier key to zoom
+sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+sudo defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+# Follow the keyboard focus while zoomed in
+sudo defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+sudo defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Show all filename extensions in Finder
+sudo defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Show status bar in Finder
+sudo defaults write com.apple.finder ShowStatusBar -bool true
+
+# Show path bar in Finder
+sudo defaults write com.apple.finder ShowPathbar -bool true
 
 ###############################################################################
 # Security                                                                    #
 ###############################################################################
 
-# Enable automatic Apple security updates
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool yes
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool yes
+# Enable all automatic Apple software updates
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool true
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool true
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool true
+sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool true
+sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool true
 sudo softwareupdate --schedule on
+sudo softwareupdate --background
 sudo softwareupdate --background-critical
+
 
 # Require password immediately after sleep or screen saver begins
 sudo defaults write com.apple.screensaver askForPassword -int 1
@@ -123,14 +171,17 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 ###############################################################################
 
 # Enable Dock auto-hidng
-defaults write com.apple.dock autohide -bool true
+sudo defaults write com.apple.dock autohide -bool true
 
 # Disable Dock animation delays
-defaults write com.apple.dock autohide-delay -float 0
-defaults write com.apple.dock autohide-time-modifier -float 0
+sudo defaults write com.apple.dock autohide-delay -float 0
+sudo defaults write com.apple.dock autohide-time-modifier -float 0
+
+# Minimize windows into their application’s icon
+sudo defaults write com.apple.dock minimize-to-application -bool true
 
 # Place Dock on right side of screen
-defaults write com.apple.dock orientation right
+sudo defaults write com.apple.dock orientation right
 
 # Remove icons from Dock
 dockutil --remove all --no-restart
@@ -150,10 +201,68 @@ dockutil --add /Applications/Sublime\ Text.app
 ###############################################################################
 
 # Save screenshots to ~/Documents/Screenshots which is synced by iCloud Drive
-defaults write com.apple.screencapture location ~/Documents/Screenshots/
+sudo defaults write com.apple.screencapture location ~/Documents/Screenshots/
 
 # Disable capturing window shadows in screenshots
-defaults write com.apple.screencapture disable-shadow -bool true
+sudo defaults write com.apple.screencapture disable-shadow -bool true
+
+###############################################################################
+# Safari                                                                      #
+###############################################################################
+
+# Show the full URL in the Safari address bar
+sudo defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+
+# Prevent Safari from opening ‘safe’ files automatically after downloading
+sudo defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+
+# Hide Safari’s bookmarks bar by default
+sudo defaults write com.apple.Safari ShowFavoritesBar -bool false
+
+# Enable Safari’s debug menu
+sudo defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+# Enable Safari's Develop menu and the Web Inspector
+sudo defaults write com.apple.Safari IncludeDevelopMenu -bool true
+sudo defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+sudo defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+
+# Disable AutoFill
+sudo defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+sudo defaults write com.apple.Safari AutoFillPasswords -bool false
+sudo defaults write com.apple.Safari AutoFillCreditCardData -bool false
+sudo defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+
+# Warn about fraudulent websites
+sudo defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+# Disable plug-ins
+sudo defaults write com.apple.Safari WebKitPluginsEnabled -bool false
+sudo defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled -bool false
+
+# Disable Java
+sudo defaults write com.apple.Safari WebKitJavaEnabled -bool false
+sudo defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
+
+# Block pop-up windows
+sudo defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
+sudo defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
+
+# Enable “Do Not Track”
+sudo defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+# Update extensions automatically
+sudo defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+
+###############################################################################
+# TextEdit                                                                    #
+###############################################################################
+
+# Use plain text mode for new TextEdit documents
+sudo defaults write com.apple.TextEdit RichText -int 0
+# Open and save files as UTF-8 in TextEdit
+sudo defaults write com.apple.TextEdit PlainTextEncoding -int 4
+sudo defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 ###############################################################################
 # Git                                                                         #
