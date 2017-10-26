@@ -57,6 +57,7 @@ brew cask install \
   1password \
   backblaze \
   blockblock \
+  flow \
   gpgtools \
   google-chrome \
   google-drive-file-stream \
@@ -194,7 +195,8 @@ dockutil --add /Applications/Messages.app --no-restart
 dockutil --add /Applications/Things3.app --no-restart
 dockutil --add /Applications/Bear.app --no-restart
 dockutil --add /Applications/Utilities/Terminal.app --no-restart
-dockutil --add /Applications/Sublime\ Text.app
+dockutil --add /Applications/Sublime\ Text.app --no-restart
+dockutil --add /Applications/Flow.app
 
 ###############################################################################
 # Screenshots                                                                 #
