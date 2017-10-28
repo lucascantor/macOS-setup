@@ -189,7 +189,6 @@ dockutil --remove all --no-restart
 
 # Add icons to Dock
 dockutil --add /Applications/Google\ Chrome.app --no-restart
-dockutil --add /Applications/Safari.app --no-restart
 dockutil --add /Applications/Tweetbot.app --no-restart
 dockutil --add /Applications/Messages.app --no-restart
 dockutil --add /Applications/Things3.app --no-restart
