@@ -77,7 +77,7 @@ mas install \
   409907375 `#apple remote desktop` \
   1037126344 `#apple configurator 2` \
   1179623856 `#pastebot` \
-  557168941 `#tweetbot` \
+  1289378661 `#twitterrific` \
   403504866 `#pcalc` \
   407963104 `#pixelmator` \
   924726344 `#deliveries` \
