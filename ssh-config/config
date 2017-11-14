@@ -11,26 +11,6 @@ KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
 
-Host spock
-	HostName 138.197.239.116
-	User lucas
-	IdentityFile ~/.ssh/personal_01_17_2016_rsa
-Host lore
-	HostName 138.197.236.74
-	User lucas
-	IdentityFile ~/.ssh/personal_01_17_2016_rsa
-Host deployment
-	HostName 10.100.31.225
-	User intercom
-	IdentityFile ~/.ssh/lucas_intercom_rsa
-Host deployment-dub
-	HostName 10.1.3.72
-	User deploymentuser
-	IdentityFile ~/.ssh/lucas_intercom_rsa
-Host deployment-chi
-	HostName 10.200.0.27
-	User deploymentuser
-	IdentityFile ~/.ssh/lucas_intercom_rsa
 Host github.com
  	User git
  	IdentityFile ~/.ssh/personal_01_17_2016_rsa
