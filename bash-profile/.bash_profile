@@ -215,3 +215,9 @@ alias less='less -FSRXc'                    # less:         Preferred 'less' imp
 alias finder='open -a Finder ./'            # finder:       Opens present working directory in Finder
 alias slt='open -a "Sublime Text"'          # slt:          Opens any file in Sublime Text
 cd() { builtin cd "$@"; ls; }               # cd:           Lists directory contents upon 'cd'
+
+# ----------------------------------------------------------------------------------
+#  assume-role for Intercom AWS 
+# -----------------------------------------------------
+
+source $(which assume-role)
