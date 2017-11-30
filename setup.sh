@@ -79,7 +79,7 @@ mas install \
   1179623856 `#pastebot` \
   1289378661 `#twitterrific` \
   403504866 `#pcalc` \
-  407963104 `#pixelmator` \
+  1289583905 `#pixelmator pro` \
   924726344 `#deliveries` \
   1055273043 `#pdf expert` \
   937984704 `#amphetamine` \
