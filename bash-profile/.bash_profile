@@ -18,10 +18,8 @@
 # load ssh keys from keychain into agent
 ssh-add -A 2>/dev/null;
 
-# Virtualenv Wrapper
-export WORKON_HOME=$HOME/.virtualenvs
-source $HOME/Library/Python/2.7/bin/virtualenvwrapper.sh
-export PATH="$PATH:$HOME/Library/Python/2.7/bin"
+# assume-role for Intercom AWS
+source $(which assume-role)
 
 # ----------------------------------------------------------------------------------
 #  Aliases to command line tools
@@ -215,9 +213,3 @@ alias less='less -FSRXc'                    # less:         Preferred 'less' imp
 alias finder='open -a Finder ./'            # finder:       Opens present working directory in Finder
 alias slt='open -a "Sublime Text"'          # slt:          Opens any file in Sublime Text
 cd() { builtin cd "$@"; ls; }               # cd:           Lists directory contents upon 'cd'
-
-# ----------------------------------------------------------------------------------
-#  assume-role for Intercom AWS 
-# -----------------------------------------------------
-
-source $(which assume-role)
