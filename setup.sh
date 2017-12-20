@@ -72,6 +72,12 @@ brew cask install \
   vlc \
 ;
 
+# Download and install IBM Plex font from GitHub
+curl -o /Users/Shared/ibm-plex.zip https://raw.githubusercontent.com/ibm/type/master/ibm-plex.zip
+unzip /Users/Shared/ibm-plex.zip -d /Users/Shared/ibm-plex/
+find /Users/Shared/ibm-plex/ -name '*.otf' -exec mv {} /Library/Fonts/ \;
+rm -r /Users/Shared/ibm-plex*
+
 # Install software via mas
 mas install \
   409907375 `#apple remote desktop` \
