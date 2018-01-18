@@ -205,11 +205,11 @@ ip() {
 #  Customize usage for common tools
 # -----------------------------------------------------
 
-alias cp='cp -iv'                           				# cp:           Preferred 'cp' implementation
-alias mv='mv -iv'                           				# mv:           Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                     				# mkdir:        Preferred 'mkdir' implementation
-alias ls='ls -FGlAhp'                       				# ls:           Preferred 'ls' implementation
-alias less='less -FSRXc'                    				# less:         Preferred 'less' implementation
-alias finder='open -a Finder ./'            				# finder:       Opens present working directory in Finder
-alias slt='open -a "Sublime Text"'          				# slt:          Opens any file in Sublime Text
-cd() { builtin cd "$@"; git pull > /dev/null 2>&1; ls; }	# cd:           Perform git pull and ls upon 'cd'
+alias cp='cp -iv'                          				# cp:           Preferred 'cp' implementation
+alias mv='mv -iv'                          				# mv:           Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                    				# mkdir:        Preferred 'mkdir' implementation
+alias ls='ls -FGlAhp'                       			# ls:           Preferred 'ls' implementation
+alias less='less -FSRXc'                    			# less:         Preferred 'less' implementation
+alias finder='open -a Finder ./'            			# finder:       Opens present working directory in Finder
+alias slt='open -a "Sublime Text"'          			# slt:          Opens any file in Sublime Text
+cd() { builtin cd "$@"; git pull 2>/dev/null; ls; }		# cd:           Perform git pull and ls upon 'cd'
