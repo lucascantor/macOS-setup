@@ -8,7 +8,7 @@ osascript -e 'tell application "System Preferences" to quit'
 ###############################################################################
 
 # Exit if private gpg keys are missing
-gpgKeyCount=`grep -l "RSA PRIVATE KEY" gpg-keys/* | wc -l`
+gpgKeyCount=`grep -l "PGP PRIVATE KEY" gpg-keys/* | wc -l`
 if [ $gpgKeyCount == 0 ]
 then
   echo "Error: please place private GPG key(s) in gpg-keys directory"
