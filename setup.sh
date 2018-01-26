@@ -58,7 +58,7 @@ brew cask install \
   backblaze \
   blockblock \
   flow \
-  gpgtools \
+  gpg-suite \
   google-chrome \
   google-drive-file-stream \
   imageoptim \
