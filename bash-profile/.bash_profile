@@ -201,6 +201,15 @@ ip() {
 	printf "\n\n"
 }
 
+# -----------------------------------------------------
+
+# emails
+# filter unique email addresses out of a text file
+# usage: emails filename.txt
+emails() {
+	grep -o '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' "$1" | sort | uniq -i
+}
+
 # ----------------------------------------------------------------------------------
 #  Customize usage for common tools
 # -----------------------------------------------------
