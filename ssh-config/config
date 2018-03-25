@@ -18,6 +18,14 @@ Host home
 Host github.com
  	User git
  	IdentityFile ~/.ssh/personal_01_17_2016_rsa
+Host gitlab.com
+ 	User git
+ 	IdentityFile ~/.ssh/personal_01_17_2016_rsa
+Host web-sandbox
+	Hostname localhost
+	User lucas
+	Port 3022
+	IdentityFile ~/.ssh/personal_01_17_2016_rsa
 Host *
 	User intercom
 	IdentityFile ~/.ssh/lucas_intercom_rsa
