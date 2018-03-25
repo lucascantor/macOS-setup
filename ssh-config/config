@@ -15,6 +15,11 @@ Host home
 	HostName home.lucascantor.com
  	User lucas
  	IdentityFile ~/.ssh/personal_01_17_2016_rsa
+Host pi-hole
+	HostName 10.0.1.36
+	Port 3022
+	User lucas
+	IdentityFile ~/.ssh/personal_01_17_2016_rsa
 Host github.com
  	User git
  	IdentityFile ~/.ssh/personal_01_17_2016_rsa
