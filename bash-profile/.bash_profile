@@ -25,11 +25,6 @@ source $(which assume-role)
 #  Aliases to command line tools
 # -----------------------------------------------------
 
-# GAM
-# command line G Suite admin tool
-# usage: https://github.com/jay0lee/GAM/wiki
-alias gam="~/bin/gam/gam"
-
 # ImageOptim
 # optimize image file in imageoptim
 # usage: ImageOptim *.png
