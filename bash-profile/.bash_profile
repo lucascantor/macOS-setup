@@ -18,9 +18,6 @@
 # load ssh keys from keychain into agent
 ssh-add -A 2>/dev/null;
 
-# assume-role for Intercom AWS
-source $(which assume-role)
-
 # ----------------------------------------------------------------------------------
 #  Aliases to command line tools
 # -----------------------------------------------------
@@ -203,6 +200,16 @@ ip() {
 # usage: emails filename.txt
 emails() {
 	grep -o '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' "$1" | sort | uniq -i
+}
+
+# -----------------------------------------------------
+
+# plcat
+# read the standard XML version of a plist (whether it’s in binary format or already in XML)
+# $1: path to the plist file to read
+# usage: plcat /path/to/foo.plist
+plcat() {
+	plutil -convert xml1 -o - "$1"
 }
 
 # ----------------------------------------------------------------------------------
