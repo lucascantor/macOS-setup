@@ -14,9 +14,8 @@
 #  Environment configuration
 # -----------------------------------------------------
 
-# SSH keys
-# load ssh keys from keychain into agent
-ssh-add -A 2>/dev/null;
+# Node path
+export NODE_PATH=/usr/local/lib/node_modules
 
 # ----------------------------------------------------------------------------------
 #  Aliases to command line tools

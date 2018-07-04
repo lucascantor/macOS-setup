@@ -17,7 +17,7 @@ Host home
  	IdentityFile ~/.ssh/personal_rsa
 Host github.com
  	User git
- 	IdentityFile ~/.ssh/personal_rsa
+ 	IdentityFile ~/.ssh/intercom_rsa
  	IdentitiesOnly yes
 Host gitlab.com
  	User git
