@@ -220,7 +220,17 @@ plcat() {
 # usage: ssh-proxy 1234 1.2.3.4
 ssh-proxy() {
 	ssh -D "$1" -f -C -q -N "$2"
-	echo "Proxy PID to kill: $(pgrep -n ssh)"
+	local proxyPID=$(pgrep -n ssh)
+	networksetup -setsocksfirewallproxy "Wi-Fi" localhost "$1"
+
+	echo "Proxy now open on port $1 to $2"
+	echo "Process ID: $proxyPID"
+	read -p "Press return to close the connection..."
+
+	networksetup -setsocksfirewallproxystate "Wi-Fi" off
+	kill "$proxyPID"
+
+	echo "Connection closed"
 }
 
 # ----------------------------------------------------------------------------------
