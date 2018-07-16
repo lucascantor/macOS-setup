@@ -211,6 +211,18 @@ plcat() {
 	plutil -convert xml1 -o - "$1"
 }
 
+# -----------------------------------------------------
+
+# ssh-proxy
+# open a SOCKS tunnel on the specified port over SSH to the specified server
+# $1: port to use
+# $2: server to use
+# usage: ssh-proxy 1234 1.2.3.4
+ssh-proxy() {
+	ssh -D "$1" -f -C -q -N "$2"
+	echo "Proxy PID to kill: $(pgrep -n ssh)"
+}
+
 # ----------------------------------------------------------------------------------
 #  Customize usage for common tools
 # -----------------------------------------------------
