@@ -42,13 +42,13 @@ brew cleanup
 
 # Install software via Homebrew
 brew install \
+  git \
+  npm \
+  wget \
+  tree \
   dockutil \
   ffmpeg \
-  git \
-  mas \
   speedtest_cli \
-  tree \
-  wget \
   youtube-dl \
 ;
 
@@ -56,15 +56,14 @@ brew install \
 brew cask install \
   1password \
   backblaze \
-  blockblock \
-  flow \
   gpg-suite \
   google-chrome \
   google-drive-file-stream \
   imageoptim \
   keybase \
-  oversight \
+  rocket \
   spectacle \
+  spotify \
   sublime-text \
   suspicious-package \
   transmit \
@@ -77,21 +76,6 @@ curl -o /Users/Shared/ibm-plex.zip https://raw.githubusercontent.com/ibm/type/ma
 unzip /Users/Shared/ibm-plex.zip -d /Users/Shared/ibm-plex/
 find /Users/Shared/ibm-plex/ -name '*.otf' -exec mv {} /Library/Fonts/ \;
 rm -r /Users/Shared/ibm-plex*
-
-# Install software via mas
-mas install \
-  409907375 `#apple remote desktop` \
-  1037126344 `#apple configurator 2` \
-  1179623856 `#pastebot` \
-  1289378661 `#twitterrific` \
-  403504866 `#pcalc` \
-  1289583905 `#pixelmator pro` \
-  924726344 `#deliveries` \
-  1055273043 `#pdf expert` \
-  937984704 `#amphetamine` \
-  904280696 `#things 3` \
-  1091189122 `#bear` \
-;
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -171,7 +155,7 @@ sudo defaults write com.apple.screensaver askForPassword -int 1
 sudo defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Set login window text
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Lucas Cantor - 610.202.9708"
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "lucascantor@gmail.com"
 
 ###############################################################################
 # Dock                                                                        #
@@ -195,19 +179,15 @@ dockutil --remove all --no-restart
 
 # Add icons to Dock
 dockutil --add /Applications/Google\ Chrome.app --no-restart
-dockutil --add /Applications/Twitterrific.app --no-restart
+dockutil --add /Applications/Spotify.app --no-restart
 dockutil --add /Applications/Messages.app --no-restart
-dockutil --add /Applications/Things3.app --no-restart
-dockutil --add /Applications/Bear.app --no-restart
 dockutil --add /Applications/Utilities/Terminal.app --no-restart
-dockutil --add /Applications/Sublime\ Text.app
+dockutil --add /Applications/Sublime\ Text.app --no-restart
+dockutil --add '~/Downloads' --view grid --display folder
 
 ###############################################################################
 # Screenshots                                                                 #
 ###############################################################################
-
-# Save screenshots to ~/Documents/Screenshots which is synced by iCloud Drive
-sudo defaults write com.apple.screencapture location ~/Documents/Screenshots/
 
 # Disable capturing window shadows in screenshots
 sudo defaults write com.apple.screencapture disable-shadow -bool true
@@ -266,6 +246,7 @@ sudo defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool 
 
 # Use plain text mode for new TextEdit documents
 sudo defaults write com.apple.TextEdit RichText -int 0
+
 # Open and save files as UTF-8 in TextEdit
 sudo defaults write com.apple.TextEdit PlainTextEncoding -int 4
 sudo defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
