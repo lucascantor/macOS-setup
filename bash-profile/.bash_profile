@@ -17,6 +17,12 @@
 # assume-role
 source $(which assume-role)
 
+function aws_account_info {
+  [ "$AWS_ACCOUNT_NAME" ] && [ "$AWS_ACCOUNT_ROLE" ] && echo -n "aws:($AWS_ACCOUNT_NAME:$AWS_ACCOUNT_ROLE) "
+}
+
+PROMPT_COMMAND='aws_account_info'
+
 # Node path
 export NODE_PATH=/usr/local/lib/node_modules
 
