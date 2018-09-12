@@ -1,24 +1,13 @@
-# ----------------------------------------------------------------------------------------------------------------------------
-#
-#  Lucas Cantor - bash profile
-#
-# -----------------------------------------------------
-#
-#  See current version:
-#
-#    https://github.com/lucascantor/macOS-setup/blob/master/bash-profile/.bash_profile
-#
-# ----------------------------------------------------------------------------------------------------------------------------
-
-# ----------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Environment configuration
-# -----------------------------------------------------
 
 # assume-role
 source $(which assume-role)
 
 function aws_account_info {
-  [ "$AWS_ACCOUNT_NAME" ] && [ "$AWS_ACCOUNT_ROLE" ] && echo -n "aws:($AWS_ACCOUNT_NAME:$AWS_ACCOUNT_ROLE) "
+  [ "$AWS_ACCOUNT_NAME" ] && \
+  [ "$AWS_ACCOUNT_ROLE" ] && \
+  echo -n "aws:($AWS_ACCOUNT_NAME:$AWS_ACCOUNT_ROLE) "
 }
 
 PROMPT_COMMAND='aws_account_info'
@@ -30,18 +19,16 @@ export NODE_PATH=/usr/local/lib/node_modules
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
-# ----------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Aliases to command line tools
-# -----------------------------------------------------
 
 # ImageOptim
 # optimize image file in imageoptim
 # usage: ImageOptim *.png
 alias ImageOptim='/Applications/ImageOptim.app/Contents/MacOS/ImageOptim'
 
-# ----------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Task automation
-# -----------------------------------------------------
 
 # ale
 # update, upgrade, and cleanup homebrew
@@ -52,16 +39,12 @@ ale() {
 	brew cleanup
 }
 
-# -----------------------------------------------------
-
 # mkzip
 # create a ZIP archive of a directory
 # usage: mkzip directory-name-here
 mkzip() {
 	zip -r "$1".zip "$1"
 }
-
-# -----------------------------------------------------
 
 # extract
 # extract most know archives with one command
@@ -87,75 +70,13 @@ extract() {
 	fi
 }
 
-# -----------------------------------------------------
-
-# cdfinder
-# cd to frontmost window currently open in Finder
-# usage: cdfinder
-cdfinder() {
-	currFolderPath=$( /usr/bin/osascript <<EOT
-		tell application "Finder"
-			try
-		set currFolder to (folder of the front window as alias)
-			on error
-		set currFolder to (path to desktop folder as alias)
-			end try
-			POSIX path of currFolder
-		end tell
-EOT
-	)
-	echo "cd to \"$currFolderPath\""
-	cd "$currFolderPath"
-}
-
-# -----------------------------------------------------
-
 # mkcd
 # make new directory and jump inside
 # usage: mkcd directory-name-here
-mkcd() { 
+mkcd() {
 	mkdir -p "$1"
 	cd "$1"
 }
-
-# -----------------------------------------------------
-
-# trash
-# move a file to the macOS trash
-# usage: trash file-name-here
-trash() {
-	mv "$@" ~/.Trash
-}
-
-# -----------------------------------------------------
-
-# quicklook
-# view file using macOS Quicklook preview
-# usage: quicklook file-name-here
-quicklook() {
-	qlmanage -p "$*" >& /dev/null
-}
-
-# -----------------------------------------------------
-
-# spotlight
-# search for a file using macOS Spotlight metadata
-# usage: spotlight file-name-here
-spotlight() {
-	mdfind "kMDItemDisplayName == '$@'wc"
-}
-
-# -----------------------------------------------------
-
-# reset-launchpad
-# order apps alphabetically in Launchpad
-# usage: reset-launchpad
-reset-launchpad() {
-	defaults write com.apple.dock ResetLaunchPad -bool true
-	killall Dock
-}
-
-# -----------------------------------------------------
 
 # clean-ds
 # recursively delete .DS_Store files
@@ -163,8 +84,6 @@ reset-launchpad() {
 clean-ds() {
 	find . -type f -name '*.DS_Store' -ls -delete
 }
-
-# -----------------------------------------------------
 
 # batch-convert
 # batch conversion of files in working directory
@@ -177,18 +96,6 @@ batch-convert() {
 	done
 }
 
-# -----------------------------------------------------
-
-# create-install-media
-# $1: path to "Install macOS" app downloaded from Mac App Store
-# $2: path to installation media volume
-# usage: create-install-media /Applications/Install\ macOS\ High\ Sierra.app /Volumes/Untitled/
-create-install-media() {
-	sudo "$1"/Contents/Resources/createinstallmedia --volume "$2" --applicationpath "$1" --nointeraction
-}
-
-# -----------------------------------------------------
-
 # ip
 # show public and private IP addresses
 # usage: ip
@@ -196,7 +103,12 @@ ip() {
 	echo -en "\nPublic:\n• WAN: "
 	dig +short myip.opendns.com @resolver1.opendns.com
 	echo -en "Private:"
-	for interface in $(networksetup -listnetworkserviceorder | grep -E 'en[0-99]' | awk '/en[0-99]/ { print $NF }' | awk -F ")" '{ print $1 }'); do
+	for interface in \
+      $(networksetup -listnetworkserviceorder | \
+      grep -E 'en[0-99]' | \
+      awk '/en[0-99]/ { print $NF }' | \
+      awk -F ")" '{ print $1 }'); \
+      do
 		ip=$(ipconfig getifaddr "$interface")
 		if [[ -n "$ip" ]]; then
 			echo -en "\n• $interface: $ip"
@@ -205,8 +117,6 @@ ip() {
 	printf "\n\n"
 }
 
-# -----------------------------------------------------
-
 # emails
 # filter unique email addresses out of a text file
 # usage: emails filename.txt
@@ -214,17 +124,13 @@ emails() {
 	grep -o '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' "$1" | sort | uniq -i
 }
 
-# -----------------------------------------------------
-
 # plcat
-# read the standard XML version of a plist (whether it’s in binary format or already in XML)
+# read the standard XML version of a plist
 # $1: path to the plist file to read
 # usage: plcat /path/to/foo.plist
 plcat() {
 	plutil -convert xml1 -o - "$1"
 }
-
-# -----------------------------------------------------
 
 # ssh-proxy
 # open a SOCKS tunnel on the specified port over SSH to the specified server
@@ -246,15 +152,12 @@ ssh-proxy() {
 	echo "Connection closed"
 }
 
-# ----------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 #  Customize usage for common tools
-# -----------------------------------------------------
 
-alias cp='cp -iv'                          				# cp:           Preferred 'cp' implementation
-alias mv='mv -iv'                          				# mv:           Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                    				# mkdir:        Preferred 'mkdir' implementation
-alias ls='ls -FGlAhp'                       			# ls:           Preferred 'ls' implementation
-alias less='less -FSRXc'                    			# less:         Preferred 'less' implementation
-alias finder='open -a Finder ./'            			# finder:       Opens present working directory in Finder
-alias slt='open -a "Sublime Text"'          			# slt:          Opens any file in Sublime Text
-cd() { builtin cd "$@"; git pull 2>/dev/null; ls; }		# cd:           Perform git pull and ls upon 'cd'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mkdir='mkdir -pv'
+alias ls='ls -FGlAhp'
+alias less='less -FSRXc'
+cd() { builtin cd "$@"; git pull 2>/dev/null; ls; }
