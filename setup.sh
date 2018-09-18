@@ -55,19 +55,15 @@ brew install \
 # Install software via Homebrew-Cask
 brew cask install \
   1password \
-  backblaze \
+  atom \
   gpg-suite \
   google-chrome \
   google-drive-file-stream \
   imageoptim \
   keybase \
-  rocket \
   spectacle \
   spotify \
-  sublime-text \
   suspicious-package \
-  transmit \
-  virtualbox \
   vlc \
 ;
 
@@ -140,11 +136,11 @@ sudo defaults write com.apple.finder ShowPathbar -bool true
 ###############################################################################
 
 # Enable all automatic Apple software updates
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool true
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool true
-sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool true
-sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool true
-sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool true
+defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool TRUE
+defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool TRUE
+defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool TRUE
+defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool TRUE
+defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool TRUE
 sudo softwareupdate --schedule on
 sudo softwareupdate --background
 sudo softwareupdate --background-critical
@@ -182,7 +178,7 @@ dockutil --add /Applications/Google\ Chrome.app --no-restart
 dockutil --add /Applications/Spotify.app --no-restart
 dockutil --add /Applications/Messages.app --no-restart
 dockutil --add /Applications/Utilities/Terminal.app --no-restart
-dockutil --add /Applications/Sublime\ Text.app --no-restart
+dockutil --add /Applications/Atom.app --no-restart
 dockutil --add '~/Downloads' --view grid --display folder
 
 ###############################################################################
@@ -284,9 +280,6 @@ done
 # SSH                                                                         #
 ###############################################################################
 
-# Enable SSH
-sudo systemsetup -setremotelogin on
-
 # Restore and import SSH keys
 mkdir -p ~/.ssh
 cp ssh-keys/* ~/.ssh/
@@ -297,13 +290,10 @@ ssh-add -K ~/.ssh/*
 cp ssh-config/config ~/.ssh/config
 
 # Restore sshd_config
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuZw8/bNgVcECchitUO1fNARNdCcfhPmL72CIVX46xjZH3zPJDWloZ45SxqN7ExktNETDaY35QHauAlZScSCrW7MwFouo4qrPTjpHzPcLj0Pz9FoTiFDqKujj8Lf7Bs+GLbSyJW34+/rUN8XAX7VVv+nutZqTIfrqLlfGk92hmz9B5+TVrOjPV+hdfVxkrmfkfANvfb9IjaIEaA9iOqFugEMEGzAU+lrmsEssSrA07qv7YKPNyab0DqMOJBIUI4TXe4B0xcBRAGr/zs6x9s4jd94+GjkEihqwZEjtSoFOXvaiQaRxu8O7Cjaq+sAfwNp/PLhm7rO65NTEMbuSrKVkABkBzltbleSgNR3bAU5XSix6/ckMasO2S1rvaiT6EWKKZFMWwLLutqcgqvaeKe9+8bdYaKCcrM+5qKyL1ULHAJKW6PyK5JeHHMzVeFvYbTcOX6j1AtnvGIVN7gwrWJMzhj+OLGFa70JW0TkHik0bO7t7OeJc3Vj4ZqZaQKHQQ6hOo6D5vO57NA+nqGautjFBI8dsAXo0khGzMoBlj2b8Ufn1saG6AlaB1RYLdMIr6a0daY9vfzsmH4dTBcwT7jY5boqvhZSeiOSM40vBIKOO0QRCPaVF6m9lcgKgWAxhnruSiifJTlVHCHMV/om5Un9oKdaV6zXBdXpLwtq7ZAATbwQ== lucascantor@gmail.com" >> ~/.ssh/authorized_keys
-
-# Prohibit password auth
-sudo sh -c "echo \"# sshd_config defaults - adopted from Mozilla guidelines\n# More info at https://wiki.mozilla.org/Security/Guidelines/OpenSSH\n\nAuthorizedKeysFile	.ssh/authorized_keys\n\n# Supported HostKey algorithms by order of preference.\nHostKey /etc/ssh/ssh_host_ed25519_key\nHostKey /etc/ssh/ssh_host_rsa_key\n\nKexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256\n\nCiphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr\n\nMACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com\n\n# Password based logins are disabled - only public key based logins are allowed.\nAuthenticationMethods publickey\n\n# LogLevel VERBOSE logs user's key fingerprint on login. Needed to have a clear audit track of which key was using to log in.\nLogLevel VERBOSE\n\n# Log sftp level file access (read/write/etc.) that would not be easily logged otherwise.\nSubsystem	sftp	/usr/libexec/sftp-server -l INFO\n\n# Root login is not allowed for auditing reasons. This is because it's difficult to track which process belongs to which root user.\nPermitRootLogin No\n\n# Use kernel sandbox mechanisms where possible in unprivileged processes\nUsePrivilegeSeparation sandbox\" >> /etc/ssh/sshd_config" && sudo -k
+sudo sh -c "echo \"# sshd_config defaults - adopted from Mozilla guidelines\n# More info at https://wiki.mozilla.org/Security/Guidelines/OpenSSH\n\nAuthorizedKeysFile	.ssh/authorized_keys\n\n# Supported HostKey algorithms by order of preference.\nHostKey /etc/ssh/ssh_host_ed25519_key\nHostKey /etc/ssh/ssh_host_rsa_key\n\nKexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256\n\nCiphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr\n\nMACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,umac-128@openssh.com\n\n# Password based logins are disabled - only public key based logins are allowed.\nAuthenticationMethods publickey\n\n# LogLevel VERBOSE logs user's key fingerprint on login. Needed to have a clear audit track of which key was using to log in.\nLogLevel VERBOSE\n\n# Log sftp level file access (read/write/etc.) that would not be easily logged otherwise.\nSubsystem	sftp	/usr/libexec/sftp-server -l INFO\n\n# Root login is not allowed for auditing reasons. This is because it's difficult to track which process belongs to which root user.\nPermitRootLogin No\n\n# Use kernel sandbox mechanisms where possible in unprivileged processes\nUsePrivilegeSeparation sandbox\" > /etc/ssh/sshd_config" && sudo -k
 
 ###############################################################################
-#                                                                             #
+# Exit                                                                        #
 ###############################################################################
 
 exit 0
