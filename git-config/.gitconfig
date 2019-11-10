@@ -1,7 +1,7 @@
 [user]
 	name = Lucas Cantor
-	email = lucascantor@gmail.com
-	signingkey = 4A680EC688ADA941
+	email = lucas@cantor.cloud
+	signingkey = 680686C69DF1AE5C
 [push]
 	default = simple
 [commit]

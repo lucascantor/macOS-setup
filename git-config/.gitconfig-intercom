@@ -1,8 +1,0 @@
-[user]
-	name = Lucas Cantor
-	email = lucas@intercom.io
-	signingkey = 0428BA33FADD5878
-[push]
-	default = simple
-[commit]
-	gpgsign = true

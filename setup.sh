@@ -42,36 +42,32 @@ brew cleanup
 
 # Install software via Homebrew
 brew install \
-  git \
-  npm \
-  wget \
-  tree \
   dockutil \
   ffmpeg \
+  git \
+  npm \
   speedtest_cli \
+  tree \
+  wget \
   youtube-dl \
 ;
 
 # Install software via Homebrew-Cask
 brew cask install \
   1password \
-  atom \
+  backblaze \
+  firefox \
   gpg-suite \
   google-chrome \
-  google-drive-file-stream \
   imageoptim \
   keybase \
+  signal \
   spectacle \
-  spotify \
   suspicious-package \
+  transmit \
+  visual-studio-code \
   vlc \
 ;
-
-# Download and install IBM Plex font from GitHub
-curl -o /Users/Shared/ibm-plex.zip https://raw.githubusercontent.com/ibm/type/master/ibm-plex.zip
-unzip /Users/Shared/ibm-plex.zip -d /Users/Shared/ibm-plex/
-find /Users/Shared/ibm-plex/ -name '*.otf' -exec mv {} /Library/Fonts/ \;
-rm -r /Users/Shared/ibm-plex*
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -151,7 +147,7 @@ sudo defaults write com.apple.screensaver askForPassword -int 1
 sudo defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Set login window text
-sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "lucascantor@gmail.com"
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "lucas@cantor.cloud"
 
 ###############################################################################
 # Dock                                                                        #
@@ -160,25 +156,13 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "
 # Enable Dock auto-hidng
 sudo defaults write com.apple.dock autohide -bool true
 
-# Disable Dock animation delays
-sudo defaults write com.apple.dock autohide-delay -float 0
-sudo defaults write com.apple.dock autohide-time-modifier -float 0
-
 # Minimize windows into their application’s icon
 sudo defaults write com.apple.dock minimize-to-application -bool true
 
-# Place Dock on right side of screen
-sudo defaults write com.apple.dock orientation right
-
-# Remove icons from Dock
+# Remove all default Dock icons
 dockutil --remove all --no-restart
 
-# Add icons to Dock
-dockutil --add /Applications/Google\ Chrome.app --no-restart
-dockutil --add /Applications/Spotify.app --no-restart
-dockutil --add /Applications/Messages.app --no-restart
-dockutil --add /Applications/Utilities/Terminal.app --no-restart
-dockutil --add /Applications/Atom.app --no-restart
+# Add Downloads folder to Dock
 dockutil --add '~/Downloads' --view grid --display folder
 
 ###############################################################################
@@ -252,19 +236,15 @@ sudo defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 ###############################################################################
 
 # Restore all git defaults
-cp git-config/.gitconfig* ~/
-
-# Restore setgit and make executable in path
-cp set-git/setgit /usr/local/bin/setgit
-chmod +x /usr/local/bin/setgit
+cp git-config/.gitconfig ~/
 
 ###############################################################################
-# Bash Profile                                                                #
+# Zsh Profile                                                                 #
 ###############################################################################
 
-# Restore and source bash profile
-cp bash-profile/.bash_profile ~/
-source ~/.bash_profile
+# Restore and source zsh profile
+cp zshrc/.zshrc ~/
+source ~/.zshrc
 
 ###############################################################################
 # GPG                                                                         #

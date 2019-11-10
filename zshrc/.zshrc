@@ -3,27 +3,11 @@
 
 # show git branch in prompt
 parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
-
-# assume-role
-source $(which assume-role)
-
-function aws_account_info {
-  [ "$AWS_ACCOUNT_NAME" ] && \
-  [ "$AWS_ACCOUNT_ROLE" ] && \
-  echo -n "aws:($AWS_ACCOUNT_NAME:$AWS_ACCOUNT_ROLE) "
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-PROMPT_COMMAND='aws_account_info'
-
-# Node path
-export NODE_PATH=/usr/local/lib/node_modules
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+setopt PROMPT_SUBST
+PROMPT='%9c%{%F{green}%}$(parse_git_branch)%{%F{none}%} $ '
 
 # ------------------------------------------------------------------------------
 #  Aliases to command line tools
