@@ -8,7 +8,6 @@
 - Install Homebrew
   - Install software via Homebrew
   - Install software via Homebrew Cask
-  - Install Mac App Store apps via mas
 - Configure general UI/UX settings
 - Configure security settings
 - Configure Dock settings
@@ -16,8 +15,7 @@
 - Configure Safari settings
 - Configure TextEdit settings
 - Configure Git
-  - Install setgit
-- Configure .bash_profile
+- Configure .zshrc
 - Configure GPG
 - Configure SSH
 
