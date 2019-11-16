@@ -91,7 +91,7 @@ batch-convert() {
 # usage: ip
 ip() {
 	echo -en "\nPublic:\n• WAN: "
-	dig +short myip.opendns.com @resolver1.opendns.com
+	curl https://diagnostic.opendns.com/myip; echo
 	echo -en "Private:"
 	for interface in \
       $(networksetup -listnetworkserviceorder | \
